@@ -1,4 +1,4 @@
-#important notes on react hooks in general and {useState, useEffect} in particular 
+#Important notes on react hooks in general and {useState, useEffect} in particular 
 
 #You cannot use React hooks in class components, they must be function components.
 
@@ -6,7 +6,7 @@
 
 class App extends React.component {
 
-# it will not work
+#It will not work
 
 }
 
@@ -20,76 +20,56 @@ if (true) {
 
 They should operate on their own.
 
-Also they should operate in the same order
+Also they should operate in the same order:
 
+To use useState hook, you call the useState() function, and we will pass the default state.
 
-# Getting Started with Create React App
+useState(default) , this useState hook will return to us an array of values, so we can assign it a variable called arr
+const arr = useState(default)
+But remember that the useState() function will always return an array of 2 values.
+so what we can do here is to destructure the variable in two different variables
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+const [initial_state, function_to_update_the_state] = useState(default)
 
-## Available Scripts
+------------------------------------------------------------------------------------
 
-In the project directory, you can run:
+Explaining the <tbody> code block:
 
-### `npm start`
+This code is written in JSX syntax and is used to render a table containing cryptocurrency data.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Here's a step-by-step breakdown of the code:
+--------------------------------------------
+    
+{crypto - This line suggests that crypto is an array of cryptocurrency data that is being mapped over to create the table rows.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+.filter((val)=> { return val.name.toLowerCase().includes(search)}) - This line is filtering the crypto array based on the search value. The search value is expected to be a string and is being used to filter the name field of the val object.
 
-### `npm test`
+.map((val, id)=> { ... } - This line is mapping over the filtered crypto array to create a table row for each item.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+return ( <> ... </> ) - This line is returning the JSX code that creates the table row. The <> and </> tags are shorthand for a React.Fragment component, which allows you to return multiple elements without needing to wrap them in a single parent element.
 
-### `npm run build`
+<tr id="id"> - This line creates a table row element and sets the id attribute to "id".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<td className="rank">{val.rank}</td> - This line creates a table cell element for the cryptocurrency rank.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<td className="logo"> - This line creates a table cell element for the cryptocurrency logo.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<a href={val.websiteUrl}> - This line creates an anchor tag element with the href attribute set to the websiteUrl value of the val object.
 
-### `npm run eject`
+<img src={val.icon} alt="logo" width="30px"/> - This line creates an image tag element with the src attribute set to the icon value of the val object, and sets the alt attribute to "logo" and the width attribute to "30px".
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p>{val.name}</p> - This line creates a paragraph tag element containing the name of the cryptocurrency.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</a> - This line closes the anchor tag element.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<td className="symbol">{val.symbol}</td> - This line creates a table cell element for the cryptocurrency symbol.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<td>$ {Math.round(val.marketCap)} </td> - This line creates a table cell element for the cryptocurrency market capitalization, and rounds the value using Math.round().
 
-## Learn More
+<td>$ {Math.round(val.price)} </td> - This line creates a table cell element for the cryptocurrency price, and rounds the value using Math.round().
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<td>{val.availableSupply}</td> - This line creates a table cell element for the cryptocurrency available supply.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</tr> - This line closes the table row element.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Overall, this code filters the crypto array based on the search value and maps over the filtered array to create a table row for each item. The table row contains information about the cryptocurrency, including its rank, logo, name, symbol, market capitalization, price, and available supply.
