@@ -1,3 +1,28 @@
+#important notes on react hooks in general and {useState, useEffect} in particular 
+
+#You cannot use React hooks in class components, they must be function components.
+
+#if you try to do:
+
+class App extends React.component {
+
+# it will not work
+
+}
+
+Because classes have their own way to do things like what hooks do.
+
+Another point to remember: that we cannot put react hooks inisde if conditionals, you cannot put them in functions, in for loops.
+
+if (true) {
+    useState()
+}
+
+They should operate on their own.
+
+Also they should operate in the same order
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
